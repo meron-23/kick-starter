@@ -11,7 +11,15 @@ import {
   LineChart,
   Mail,
   Calendar,
-  ExternalLink
+  ExternalLink,
+  BookOpen,
+  PlayCircle,
+  Download,
+  Linkedin,
+  HelpCircle,
+  FileText,
+  Map,
+  Compass
 } from 'lucide-react';
 
 const Navbar = () => (
@@ -27,153 +35,184 @@ const Navbar = () => (
           SAP BDC
         </span>
       </div>
-      <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
+      <div className="nav-menu" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
         <a href="#vision" className="nav-link">Vision</a>
-        <a href="#solutions" className="nav-link">Solutions</a>
-        <a href="#ai" className="nav-link">Agentic AI</a>
-        <a href="#contact" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.875rem' }}>Get Started</a>
+        <a href="#resources" className="nav-link">Resources</a>
+        <a href="#ai" className="nav-link">AI & Databricks</a>
+        <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.875rem' }}>Discovery Kit</a>
       </div>
     </div>
   </nav>
 );
 
 const SectionHeader = ({ title, subtitle, light = false }) => (
-  <div style={{ marginBottom: '4rem', maxWidth: '700px' }}>
+  <div style={{ marginBottom: '3rem', maxWidth: '800px' }}>
     <div className="divider" />
-    <h2 style={{ fontSize: '2.75rem', color: light ? 'white' : 'var(--secondary)', marginBottom: '1rem' }}>{title}</h2>
-    {subtitle && <p style={{ fontSize: '1.125rem', color: light ? 'rgba(255,255,255,0.7)' : 'var(--text-muted)' }}>{subtitle}</p>}
+    <h2 style={{ fontSize: '2.5rem', color: light ? 'white' : 'var(--secondary)', marginBottom: '1rem' }}>{title}</h2>
+    {subtitle && <p style={{ fontSize: '1.1rem', color: light ? 'rgba(255,255,255,0.7)' : 'var(--text-muted)' }}>{subtitle}</p>}
   </div>
+);
+
+const ResourceList = ({ items, light = false }) => (
+  <ul className={`resource-list ${light ? 'light' : ''}`}>
+    {items.map((item, idx) => (
+      <li key={idx} className={`resource-item ${item.featured ? 'featured' : ''}`}>
+        {item.tag && <span className="tag">{item.tag}</span>}
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="resource-link">
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
 );
 
 const Hero = () => (
   <header className="hero-minimal">
     <div className="container">
       <Motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        style={{ maxWidth: '850px' }}
+        style={{ maxWidth: '900px' }}
       >
         <span style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          SAP Business Data Cloud (BDC)
+          Business Data Cloud Kick Starter
         </span>
-        <h1 className="text-white" style={{ fontSize: 'clamp(3rem, 7vw, 4.5rem)', marginTop: '1.5rem', lineHeight: 1.05 }}>
-          The Open Era of <span className="highlight">Data Intelligence</span>
+        <h1 className="text-white" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', marginTop: '1.5rem', lineHeight: 1.1 }}>
+          The Open Era of <span className="highlight">Enterprise Intelligence</span>
         </h1>
-        <p style={{ fontSize: '1.5rem', color: 'rgba(255,255,255,0.8)', marginTop: '2rem', maxWidth: '650px', fontWeight: 300 }}>
-          The future is Zero-Copy. The future is Open. Unlock the operating system for the AI-driven enterprise.
+        <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.8)', marginTop: '2rem', maxWidth: '700px', fontWeight: 300 }}>
+          Stop moving your data. Start reasoning over it. SAP Business Data Cloud unifies rich business semantics with industry-leading lakehouse intelligence.
         </p>
-        <div style={{ display: 'flex', gap: '1.5rem', marginTop: '3.5rem' }}>
-          <a href="#contact" className="btn btn-primary">Join the Waitlist <ArrowRight size={18} /></a>
-          <a href="#vision" className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>Learn More</a>
+
+        <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
+          <div className="hide-mobile" style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderLeft: '2px solid var(--primary)' }}>
+            <h4 className="text-white" style={{ marginBottom: '0.5rem', fontSize: '1rem' }}>Core Overview</h4>
+            <ResourceList light={true} items={[
+              { label: 'Introducing SAP BDC', url: 'https://news.sap.com/?p=231446', tag: 'Article' },
+              { label: 'Solution Brief', url: 'https://www.sap.com/documents/2025/02/ee86321d-f37e-0010-bca6-c68f7e60039b.html', tag: 'PDF' },
+              { label: 'Overview Video', url: 'https://www.sap.com/assetdetail/2025/02/2ac6681b-f37e-0010-bca6-c68f7e60039b.html', tag: 'Video' }
+            ]} />
+          </div>
+          <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderLeft: '2px solid #FFF' }}>
+            <h4 className="text-white" style={{ marginBottom: '0.5rem', fontSize: '1rem' }}>Join the Strategy</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+              <a href="#contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Waitlist <ArrowRight size={16} /></a>
+              <a href="https://www.linkedin.com/groups/13112863/" target="_blank" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', borderColor: 'white', color: 'white' }}>Community <Linkedin size={16} /></a>
+            </div>
+          </div>
         </div>
       </Motion.div>
     </div>
   </header>
 );
 
-const Vision = () => (
+const GettingStarted = () => (
   <section id="vision" className="section-padding">
     <div className="container">
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '5rem', alignItems: 'center' }}>
+      <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem' }}>
         <div>
           <SectionHeader
-            title="Move Beyond Modernization. Lead with Intelligence."
-            subtitle="The days of complex ETL and fragile data pipelines are over. SAP BDC unifies SAP’s rich business semantics with Databricks’ power."
+            title="Getting Started"
+            subtitle="Begin your journey with SAP Business Data Cloud through guided tours, trials, and learning paths."
           />
-          <p style={{ marginBottom: '2rem', fontSize: '1.1rem', color: 'var(--text-muted)' }}>
-            SAP Business Data Cloud isn't just a cloud data warehouse; it's the foundation for your most ambitious innovation goals.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-            <div>
-              <h4 style={{ color: 'var(--secondary)', marginBottom: '0.5rem' }}>Zero-Copy Architecture</h4>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>Access SAP data bi-directionally without the cost of physical movement using Delta Sharing.</p>
-            </div>
-            <div>
-              <h4 style={{ color: 'var(--secondary)', marginBottom: '0.5rem' }}>Unified Governance</h4>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>Secure your entire data estate through Databricks Unity Catalog for enterprise-wide compliance.</p>
+          <div className="card-grid" style={{ gridTemplateColumns: '1fr' }}>
+            <div className="service-card" style={{ padding: '2rem' }}>
+              <Compass size={32} className="highlight" style={{ marginBottom: '1rem' }} />
+              <h3>Assessment & Learning</h3>
+              <ResourceList items={[
+                { label: 'Migration Assessment', url: 'https://www.sap.com/products/data-cloud/sap-migration-assessment.html', featured: true },
+                { label: 'Official Learning Journey', url: 'https://learning.sap.com/learning-journeys/introducing-sap-business-data-cloud' },
+                { label: 'Guided Product Tour', url: 'https://www.sap.com/products/data-cloud/product-tour.html' },
+                { label: 'Basic Trial Access', url: 'https://www.sap.com/products/data-cloud/trial.html' }
+              ]} />
             </div>
           </div>
         </div>
-        <div style={{ background: 'var(--bg-light)', padding: '3rem', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--primary)' }} />
-          <h3 style={{ marginBottom: '1.5rem' }}>Strategic campaign focus</h3>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            <li style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
-              <Zap size={24} className="highlight" />
-              <span><strong>First-Party Integration</strong>: Databricks as a first-party citizen within the SAP cloud.</span>
-            </li>
-            <li style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
-              <Globe size={24} className="highlight" />
-              <span><strong>RISE with SAP</strong>: The essential move for companies already on the RISE journey.</span>
-            </li>
-            <li style={{ display: 'flex', gap: '1rem' }}>
-              <ShieldCheck size={24} className="highlight" />
-              <span><strong>Open Standard</strong>: Technical leadership with an "open-source friendly" approach.</span>
-            </li>
-          </ul>
+        <div style={{ background: 'var(--bg-light)', padding: '3rem', borderTop: '4px solid var(--primary)' }}>
+          <SectionHeader
+            title="Intelligent Applications"
+            subtitle="The next step in analytics evolution: from traditional content to AI-driven apps."
+          />
+          <ResourceList items={[
+            { label: 'Intelligent Applications Home', url: 'https://www.sap.com/products/data-cloud/intelligent-applications.html' },
+            { label: 'Rethinking People Intelligence', url: 'https://community.sap.com/t5/product-and-customer-updates/rethinking-people-analytics-for-ai-introducing-people-intelligence-in-sap/ba-p/14141389' },
+            { label: 'Tech Behind Out-of-the-box Apps', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/understand-tech-behind-sap-business-data-cloud-bdc-out-of-the-box/ba-p/14045868' },
+            { label: 'Data Products vs. Intelligent Apps', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/the-differentiation-sap-data-products-and-intelligent-applications-in-sap/ba-p/14048577' },
+            { label: 'Evolution of Analytics Content', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/analytics-evolution-from-traditional-business-content-to-sap-bdc/ba-p/14035000' }
+          ]} />
         </div>
       </div>
     </div>
   </section>
 );
 
-const Solutions = () => (
-  <section id="solutions" className="section-padding bg-light">
+const TechnicalDeepDive = () => (
+  <section id="resources" className="section-padding bg-light">
     <div className="container">
       <SectionHeader
-        title="From Data Warehousing to Data Products"
-        subtitle="Shift from managing infrastructure to delivering high-value business outcomes."
+        title="Technical Enablement Hub"
+        subtitle="Deep dives into Data Products and Capacity Planning."
       />
-      <div className="card-grid">
+      <div className="card-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))' }}>
         <div className="service-card">
-          <Database size={40} className="highlight" style={{ marginBottom: '1.5rem' }} />
-          <h3>Marketplace Ready</h3>
-          <p style={{ marginTop: '1rem', color: 'var(--text-muted)' }}>Discover and deploy curated SAP Data Products that maintain original business context and logic.</p>
+          <Layers size={32} className="highlight" style={{ marginBottom: '1rem' }} />
+          <h3>Data Products Series</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Understanding the metadata and resource discovery behind professional data products.</p>
+          <ResourceList items={[
+            { label: 'Part 1: Intro to Data Products', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-business-data-cloud-series-part-1-introduction-to-data-products/ba-p/14142919' },
+            { label: 'Part 2: Extending S/4HANA Data', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-business-data-cloud-series-part-2-extend-sap-s-4hana-managed-data/ba-p/14174030' },
+            { label: 'Metadata Exploration', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/the-metadata-behind-sap-data-products-in-sap-business-data-cloud/ba-p/14016947' },
+            { label: 'Open Resource Discovery', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/why-we-created-open-resource-discovery/ba-p/14172057' },
+            { label: 'BW Data Product Generator', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/the-sap-bw-data-product-generator-for-sap-business-data-cloud/ba-p/14072413' }
+          ]} />
         </div>
         <div className="service-card">
-          <LineChart size={40} className="highlight" style={{ marginBottom: '1.5rem' }} />
-          <h3>Pre-Built Insight Apps</h3>
-          <p style={{ marginTop: '1rem', color: 'var(--text-muted)' }}>Deploy out-of-the-box applications for working capital and supply chain optimization immediately.</p>
-        </div>
-        <div className="service-card">
-          <Layers size={40} className="highlight" style={{ marginBottom: '1.5rem' }} />
-          <h3>Capacity Estimator</h3>
-          <p style={{ marginTop: '1rem', color: 'var(--text-muted)' }}>Accurately size your BDC environment based on your current data estate and future AI ambitions.</p>
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', color: 'var(--primary)', fontWeight: 700, textDecoration: 'none', fontSize: '0.875rem' }}>
-            LAUNCH ESTIMATOR <ExternalLink size={14} />
-          </a>
+          <LineChart size={32} className="highlight" style={{ marginBottom: '1rem' }} />
+          <h3>Capacity Unit Estimator</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Master the tools for sizing and quota management across Databricks and Datasphere.</p>
+          <ResourceList items={[
+            { label: 'Using the Capacity Estimator', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/how-to-use-sap-business-data-cloud-capacity-unit-estimator/ba-p/14181530' },
+            { label: 'Estimator for Databricks & Datasphere', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/how-to-use-sap-business-data-cloud-capacity-unit-estimator-for-sap/ba-p/14184447' },
+            { label: 'Editing Quota Assignments', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/how-to-edit-a-quota-assignment-in-sap-business-data-cloud-bdc/ba-p/14181937' }
+          ]} />
         </div>
       </div>
     </div>
   </section>
 );
 
-const AISection = () => (
+const AIAndIntegration = () => (
   <section id="ai" className="section-padding bg-charcoal">
     <div className="container">
-      <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-        <div className="divider" style={{ margin: '0 auto 2rem' }} />
-        <h2 style={{ fontSize: '3rem', color: 'white' }}>The Foundation for <span className="highlight">Agentic AI</span></h2>
-        <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.7)', maxWidth: '800px', margin: '1.5rem auto 0' }}>
-          AI is only as good as the data that feeds it. SAP Business Data Cloud provides the context-rich foundation required for high-performance AI agents.
-        </p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
-        <div style={{ padding: '3rem', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.03)' }}>
-          <Cpu className="highlight" size={48} style={{ marginBottom: '2rem' }} />
-          <h3 className="text-white" style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>Domain-Specific AI</h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)' }}>
-            Combine mission-critical SAP data (Finance, HR, Supply Chain) with non-SAP data to build models that truly understand your unique business logic and processes.
-          </p>
+      <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '5rem' }}>
+        <div>
+          <SectionHeader
+            title="Databricks & AI"
+            light={true}
+            subtitle="Building the intelligent enterprise by unifying business data and lakehouse intelligence."
+          />
+          <ResourceList light={true} items={[
+            { label: 'Learn about SAP Databricks', url: 'https://www.sap.com/products/data-cloud/databricks.html' },
+            { label: 'Unlocking AI Foundation', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/unlocking-sap-ai-foundation-capabilities-in-sap-databricks-a-technical-deep/ba-p/14162430' },
+            { label: 'AI Unleashed: Part 1', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-databricks-building-an-intelligent-enterprise-with-ai-unleashed-part-1/ba-p/14166813' },
+            { label: 'Unifying Lakehouse Intelligence', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-databricks-in-sap-business-data-cloud-unifying-sap-business-data-with/ba-p/14097709' },
+            { label: 'End-to-End Integration Check', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-databricks-building-an-intelligent-enterprise-with-ai-unleashed-part-4/ba-p/14178056' }
+          ]} />
         </div>
-        <div style={{ padding: '3rem', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.03)' }}>
-          <Zap className="highlight" size={48} style={{ marginBottom: '2rem' }} />
-          <h3 className="text-white" style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>Joule Integration</h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)' }}>
-            Power your AI copilot with a harmonized knowledge graph, enabling truly autonomous decision-making across complex, cross-functional enterprise workflows.
-          </p>
+        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '3rem', borderTop: '4px solid var(--primary)' }}>
+          <h3 className="text-white" style={{ marginBottom: '2rem' }}>Architecture & Security</h3>
+          <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+            <ResourceList light={true} items={[
+              { label: 'Architecture Overview', url: 'https://community.sap.com/t5/enterprise-architecture-discussions/architecture-overview-of-sap-business-data-cloud-bdc/m-p/14034914' },
+              { label: 'Provisioning Guide', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/introductory-guide-to-provisioning-of-sap-business-data-cloud/ba-p/14117460' },
+              { label: 'Data Security Deep Dive', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/securing-data-journey-with-sap-business-data-cloud/ba-p/14139300' }
+            ]} />
+            <ResourceList light={true} items={[
+              { label: 'Detailed FAQs', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-business-data-cloud-faqs/ba-p/14022781' },
+              { label: '3rd Party Integration', url: 'https://community.sap.com/t5/technology-blog-posts-by-sap/sap-business-data-cloud-bdc-integration-with-sap-apps-and-3rd-party-apps/ba-p/14060921' }
+            ]} />
+          </div>
         </div>
       </div>
     </div>
@@ -183,7 +222,7 @@ const AISection = () => (
 const Footer = () => (
   <footer id="contact" className="section-padding" style={{ borderTop: '1px solid var(--border-light)' }}>
     <div className="container">
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1.2fr', gap: '6rem' }}>
+      <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1.2fr', gap: '6rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
             <div style={{ width: '4px', height: '24px', background: 'var(--primary)' }} />
@@ -192,29 +231,36 @@ const Footer = () => (
             </span>
           </div>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '400px' }}>
-            Leading the open era of data intelligence. Partnering with global enterprises to unlock the full potential of SAP and Databricks.
+            Leading the open era of data intelligence. Strategic partner for SAP and Databricks digital transformation.
           </p>
+          <div style={{ marginTop: '2rem', display: 'flex', gap: '1.5rem' }}>
+            <a href="https://www.linkedin.com/groups/13112863/" target="_blank" className="highlight"><Linkedin size={24} /></a>
+            <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" className="highlight"><Download size={24} /></a>
+          </div>
         </div>
 
-        <div>
-          <h4 style={{ marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem' }}>Contact Our Team</h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div className="hide-mobile">
+          <h4 style={{ marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem' }}>Enablement Resources</h4>
+          <div className="nav-menu" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <a href="mailto:ams-support@protiviti.com" style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--secondary)', textDecoration: 'none', fontWeight: 600 }}>
-              <Mail size={20} className="highlight" /> ams-support@protiviti.com
+              <Mail size={18} className="highlight" /> Contact Support
             </a>
             <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--secondary)', textDecoration: 'none', fontWeight: 600 }}>
-              <Calendar size={20} className="highlight" /> Schedule a Personalized Demo
+              <Calendar size={18} className="highlight" /> Schedule Demo
+            </a>
+            <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--secondary)', textDecoration: 'none', fontWeight: 600 }}>
+              <FileText size={18} className="highlight" /> Discovery Kit (PDF)
             </a>
           </div>
         </div>
 
         <div>
-          <h4 style={{ marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem' }}>Secure Your Spot</h4>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-            Join the waiting list for our staged rollout on AWS, Azure, and Google Cloud.
+          <h4 style={{ marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem' }}>Stay Informed</h4>
+          <p className="hide-mobile" style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+            Join the SAP BDC community and get the latest technical updates.
           </p>
-          <div style={{ display: 'flex', gap: '0' }}>
-            <input type="email" placeholder="Business Email" style={{
+          <form style={{ display: 'flex', gap: '0' }}>
+            <input type="email" placeholder="Business Email" required style={{
               background: 'var(--bg-light)',
               border: '1px solid var(--border-light)',
               padding: '16px 20px',
@@ -222,17 +268,17 @@ const Footer = () => (
               outline: 'none',
               fontSize: '1rem'
             }} />
-            <button className="btn btn-primary" style={{ padding: '0 24px' }}>JOIN</button>
-          </div>
+            <button type="submit" className="btn btn-primary" style={{ padding: '0 24px' }}>JOIN</button>
+          </form>
         </div>
       </div>
 
       <div style={{ marginTop: '8rem', paddingTop: '3rem', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-        <span>© 2026 Protiviti. All rights reserved. Strategic Enabler for SAP Business Data Cloud.</span>
+        <span>© 2026 SAP BDC Kickstarter. All rights reserved. Professional Enablement Series.</span>
         <div style={{ display: 'flex', gap: '2rem' }}>
           <span>Privacy Policy</span>
-          <span>Terms of Use</span>
-          <span>Contact Us</span>
+          <span>Terms of Service</span>
+          <span>SAP Community</span>
         </div>
       </div>
     </div>
@@ -244,9 +290,9 @@ function App() {
     <div className="App">
       <Navbar />
       <Hero />
-      <Vision />
-      <Solutions />
-      <AISection />
+      <GettingStarted />
+      <TechnicalDeepDive />
+      <AIAndIntegration />
       <Footer />
     </div>
   );
