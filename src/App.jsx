@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion as Motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import {
   Database,
   ArrowRight,
@@ -19,31 +19,65 @@ import {
   HelpCircle,
   FileText,
   Map,
-  Compass
+  Compass,
+  Menu,
+  X
 } from 'lucide-react';
 
-const Navbar = () => (
-  <nav style={{
-    position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-    background: 'white', borderBottom: '1px solid var(--border-light)',
-    padding: '1.25rem 0'
-  }}>
-    <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div style={{ width: '4px', height: '24px', background: 'var(--primary)' }} />
-        <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.02em' }}>
-          SAP BDC
-        </span>
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
+  return (
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+      background: 'white', borderBottom: '1px solid var(--border-light)',
+      padding: '1.25rem 0'
+    }}>
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ width: '4px', height: '20px', background: 'var(--primary)' }} />
+          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.02em' }}>
+            SAP BDC
+          </span>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="nav-menu" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+          <a href="#vision" className="nav-link">Vision</a>
+          <a href="#resources" className="nav-link">Resources</a>
+          <a href="#ai" className="nav-link">AI & Databricks</a>
+          <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.875rem' }}>Discovery Kit</a>
+        </div>
+
+        {/* Hamburger Button */}
+        <button className="hamburger-btn" style={{ display: 'none' }} onClick={toggleMenu}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
-      <div className="nav-menu" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-        <a href="#vision" className="nav-link">Vision</a>
-        <a href="#resources" className="nav-link">Resources</a>
-        <a href="#ai" className="nav-link">AI & Databricks</a>
-        <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" className="btn btn-primary" style={{ padding: '10px 24px', fontSize: '0.875rem' }}>Discovery Kit</a>
-      </div>
-    </div>
-  </nav>
-);
+
+      {/* Mobile Nav Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <Motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className={`mobile-nav ${isOpen ? 'open' : ''}`}
+          >
+            <a href="#vision" className="nav-link" onClick={closeMenu}>Vision</a>
+            <a href="#resources" className="nav-link" onClick={closeMenu}>Resources</a>
+            <a href="#ai" className="nav-link" onClick={closeMenu}>AI & Databricks</a>
+            <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" className="btn btn-primary" onClick={closeMenu}>Discovery Kit</a>
+          </Motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
 
 const SectionHeader = ({ title, subtitle, light = false }) => (
   <div style={{ marginBottom: '3rem', maxWidth: '800px' }}>
