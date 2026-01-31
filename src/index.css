@@ -1,0 +1,198 @@
+:root {
+  /* Official Protiviti Blue & Gray Palette */
+  --primary: #00A3DA;
+  /* Protiviti Technology Blue */
+  --primary-dark: #005072;
+  /* Deep Professional Blue */
+  --secondary: #414042;
+  /* Official Protiviti Dark Gray */
+  --black: #000000;
+  --text-main: #000000;
+  --text-muted: #414042;
+  --bg-white: #FFFFFF;
+  --bg-light: #F4F4F4;
+  --border-light: #D1D3D4;
+  /* Official Protiviti Light Gray */
+  --font-main: 'Inter', sans-serif;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-white);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* Section Spacing */
+.section-padding {
+  padding: 100px 0;
+}
+
+/* Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 14px 32px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+  /* Sharp corners like Protiviti */
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Header/Nav */
+.nav-link {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary);
+  transition: var(--transition);
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Cards & Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+.service-card {
+  padding: 3rem 2rem;
+  background: white;
+  border-top: 4px solid transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.service-card:hover {
+  border-top-color: var(--primary);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.divider {
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary);
+  margin-bottom: 2rem;
+}
+
+/* Utilities */
+.text-white {
+  color: white;
+}
+
+.bg-charcoal {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.bg-light {
+  background-color: var(--bg-light);
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+/* Animation Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero Style */
+.hero-minimal {
+  position: relative;
+  background-color: var(--secondary);
+  overflow: hidden;
+  padding-top: 160px;
+  padding-bottom: 120px;
+}
+
+.hero-minimal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 163, 218, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
