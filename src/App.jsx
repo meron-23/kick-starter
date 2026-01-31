@@ -274,7 +274,7 @@ const Footer = () => (
       </div>
 
       <div style={{ marginTop: '8rem', paddingTop: '3rem', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-        <span>© 2026 SAP BDC Kickstarter. All rights reserved. Professional Enablement Series.</span>
+        <span>© 2026 SAP BDC Kickstarter. All rights reserved</span>
         <div style={{ display: 'flex', gap: '2rem' }}>
           <span>Privacy Policy</span>
           <span>Terms of Service</span>
