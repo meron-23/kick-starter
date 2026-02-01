@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   LineChart,
   Mail,
+  Phone,
   Calendar,
   ExternalLink,
   BookOpen,
@@ -37,9 +38,10 @@ const Navbar = () => {
       padding: '1.25rem 0'
     }}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ width: '4px', height: '20px', background: 'var(--primary)' }} />
-          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.02em' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+          <img src="/logo.png" alt="SAP BDC Logo" style={{ height: '70px', width: '150px' }} />
+          <div style={{ width: '2px', height: '32px', background: 'var(--primary)', margin: '0 0.5rem' }} className="hide-mobile" />
+          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.02em' }} className="hide-mobile">
             SAP BDC
           </span>
         </div>
@@ -128,11 +130,17 @@ const Hero = () => (
               { label: 'Overview Video', url: 'https://www.sap.com/assetdetail/2025/02/2ac6681b-f37e-0010-bca6-c68f7e60039b.html', tag: 'Video' }
             ]} />
           </div>
-          <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderLeft: '2px solid #FFF' }}>
-            <h4 className="text-white" style={{ marginBottom: '0.5rem', fontSize: '1rem' }}>Join the Strategy</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-              <a href="#contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Waitlist <ArrowRight size={16} /></a>
-              <a href="https://www.linkedin.com/groups/13112863/" target="_blank" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', borderColor: 'white', color: 'white' }}>Community <Linkedin size={16} /></a>
+          <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderLeft: '2px solid var(--primary)' }}>
+            <h4 className="text-white" style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: 1.3 }}>Ready to transform your data strategy with SAP Business Data Cloud?</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Contact Us for More Information:</p>
+              <a href="mailto:ams-support@protiviti.com" className="btn btn-primary" style={{ width: '100%', padding: '12px 20px', fontSize: '0.9rem' }}>
+                <Mail size={16} /> ams-support@protiviti.com
+              </a>
+              <div style={{ color: 'white', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '12px 20px', background: 'rgba(255,255,255,0.05)' }}>
+                <Phone size={16} />
+                Bob Zenker: 615-416-2505
+              </div>
             </div>
           </div>
         </div>
@@ -258,23 +266,20 @@ const Footer = () => (
     <div className="container">
       <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1.2fr', gap: '6rem' }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-            <div style={{ width: '4px', height: '24px', background: 'var(--primary)' }} />
-            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.02em' }}>
+          <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2.5rem', minHeight: '70px' }}>
+            <img src="/logo.png" alt="SAP BDC Logo" style={{ height: '70px', width: 'auto' }} />
+            <div style={{ width: '2px', height: '40px', background: 'var(--primary)', margin: '0 0.5rem' }} />
+            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.02em', alignSelf: 'center' }}>
               SAP BDC
             </span>
           </div>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '400px' }}>
+          <p className="hide-mobile" style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '400px', lineHeight: '1.6' }}>
             Leading the open era of data intelligence. Strategic partner for SAP and Databricks digital transformation.
           </p>
-          <div style={{ marginTop: '2rem', display: 'flex', gap: '1.5rem' }}>
-            <a href="https://www.linkedin.com/groups/13112863/" target="_blank" className="highlight"><Linkedin size={24} /></a>
-            <a href="https://dam.sap.com/mac/app/p/pdf/asset/preview/PV8yhLX?ltr=a&rc=10&doi=SAP1182500" target="_blank" className="highlight"><Download size={24} /></a>
-          </div>
         </div>
 
         <div className="hide-mobile">
-          <h4 style={{ marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem' }}>Enablement Resources</h4>
+          <h4 style={{ marginBottom: '2.5rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem', paddingTop: '22px' }}>Enablement Resources</h4>
           <div className="nav-menu" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <a href="mailto:ams-support@protiviti.com" style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--secondary)', textDecoration: 'none', fontWeight: 600 }}>
               <Mail size={18} className="highlight" /> Contact Support
@@ -289,30 +294,28 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 style={{ marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem' }}>Stay Informed</h4>
-          <p className="hide-mobile" style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-            Join the SAP BDC community and get the latest technical updates.
-          </p>
-          <form style={{ display: 'flex', gap: '0' }}>
-            <input type="email" placeholder="Business Email" required style={{
-              background: 'var(--bg-light)',
-              border: '1px solid var(--border-light)',
-              padding: '16px 20px',
-              flex: 1,
-              outline: 'none',
-              fontSize: '1rem'
-            }} />
-            <button type="submit" className="btn btn-primary" style={{ padding: '0 24px' }}>JOIN</button>
-          </form>
+          <h4 style={{ marginBottom: '2.5rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem', paddingTop: '22px' }}>Contact Us</h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-muted)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <Mail size={18} className="highlight" />
+              <a href="mailto:ams-support@protiviti.com" style={{ color: 'inherit', textDecoration: 'none', fontWeight: 600 }}>ams-support@protiviti.com</a>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <Zap size={18} className="highlight" />
+              <span>Bob Zenker: 615-416-2505</span>
+            </div>
+            <p className="hide-mobile" style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
+              Ready to transform your data strategy with SAP Business Data Cloud? Reach out to our team today.
+            </p>
+          </div>
         </div>
       </div>
 
       <div style={{ marginTop: '8rem', paddingTop: '3rem', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-        <span>© 2026 SAP BDC Kickstarter.</span>
+        <span>© 2026 Protivity SAP BDC Kickstarter.</span>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
-          <span>SAP Community</span>
+          <span className="hide-mobile">Privacy Policy</span>
+          <span className="hide-mobile">Terms of Service</span>
         </div>
       </div>
     </div>
